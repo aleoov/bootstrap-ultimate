@@ -20,6 +20,12 @@ foreach ($mod_idfs as $mod_idf=>$fnam ) {
 		<?php if($cust_layout && $cust_layout == "left-sidebar"  || !$cust_layout && $eo_options["main_layout"] == "left-sidebar" || $cust_layout == "default"  && $eo_options["main_layout"] == "left-sidebar" )	get_sidebar(); // sidebar main	?>
         <?php ($cust_layout && $cust_layout == "full" || !$cust_layout && $eo_options["main_layout"]=="full") ? $main_cols = 'col-sm-12' : $main_cols = eo_get_cols('main','',false) ?>
 		<div id="main" class="<?php echo $main_cols ?>" role="main">
+					<?php if (have_posts()) : while (have_posts()) : the_post(); ?>	
+					  <?php get_template_part( 'content-single', get_post_format() ); ?>		
+					<?php endwhile; ?>			
+					
+					<?php else : ?>
+					
 					<article id="post-not-found">
 					    <header>
 					    	<h1><?php _e("Not Found", "bonestheme"); ?></h1>
@@ -30,6 +36,8 @@ foreach ($mod_idfs as $mod_idf=>$fnam ) {
 					    <footer>
 					    </footer>
 					</article>
+					
+					<?php endif; ?>
 				</div> <!-- end #main -->
 			<?php if($cust_layout && $cust_layout == "right-sidebar"  || !$cust_layout  && $eo_options["main_layout"] == "right-sidebar" || $cust_layout == "default"  && $eo_options["main_layout"] == "right-sidebar" )	get_sidebar(); // sidebar main	?>
         </div> <!-- end #content -->
