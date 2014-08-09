@@ -10,7 +10,7 @@ $customimg = get_post_meta($post->ID,"_eo_cust_post_feat_img",true);
 		<div id="main" class="<?php echo $main_cols ?>" role="main">
 					<?php if (have_posts()) : while (have_posts()) : the_post(); ?>	
 					  <?php get_template_part( 'content-single', get_post_format() ); ?>		
-					<?php comments_template('',true); ?>
+					<?php comments_template('',false); ?>
 					<?php endwhile; ?>			
 					
 					<?php else : ?>
